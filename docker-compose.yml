@@ -10,3 +10,15 @@ services:
       - /mnt/data/www:/www
       - /mnt/data/config:/config
     command: --conf /config/Caddyfile
+    restart: always
+  openvpn:
+    image: kylemanna/openvpn
+    container_name: openvpn
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1194:1194/udp"
+    restart: always
+    volumes:
+      - /mnt/data/openvpn:/etc/openvpn
+
